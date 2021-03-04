@@ -1,3 +1,5 @@
+import java.util.concurrent.locks.Condition
+
 // Controle de Fluxo
 
 /*
@@ -47,9 +49,55 @@ fun main() {
 
  */
 
+/*
 fun main() {
 
     for (i in 0..10){
         println("i está com $i")
     }
+}
+ */
+
+// SOBRECARGA DE FUNÇÕES / overload de metodo / duas funções com mesmo nome
+/*
+fun sum(x: Int, y: Int) : Int{
+    return x + y
+}
+fun sum(x: Double, y: Double) : Double{
+    return x + y
+}
+
+fun main() {
+    print(sum(2.5, 3.3))
+}
+ */
+
+// GUARDAR UMA FUNÇÃO DENTRO DE UMA VARIAVEL
+/*
+fun sum(x: Double, y: Double) : Double{
+    return x + y
+}
+var function: (Double, Double) -> Double = ::sum // <------ function recebeu a função acima com ::sum
+
+fun main() {
+    print(function(2.5, 3.5))
+}
+ */
+
+// CONCEITO DE TYPE ALIAS
+
+fun sum(x: Double, y: Double) : Double{
+    return x + y
+}
+fun subtract(x: Double, y: Double) : Double{
+    return x - y
+}
+fun calculator(x: Double, y:Double, condition: operation){
+    println(condition(x,y))
+}
+typealias operation = (Double, Double) -> Double  // <-- Antes eram parametros de condition
+
+fun main() {
+    calculator(8.5, 9.2, ::sum)
+    calculator(8.5, 9.2, ::subtract)
 }
